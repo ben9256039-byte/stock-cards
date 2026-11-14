@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: "45 23 * * 0-4"   # UTC 23:45 = 台北 07:45（週一～週五）
   workflow_dispatch: {}       # 也可以在 GitHub 網頁手動按「Run」
+permissions:
+  contents: write
 jobs:
   cards:
     runs-on: ubuntu-latest
@@ -20,3 +22,11 @@ jobs:
           MAIL_TO: ${{ secrets.MAIL_TO }}
       - uses: actions/upload-artifact@v4
         with: { name: cards, path: out/ }
+      - name: 字卡存到 cards 分支（方便在 GitHub 上直接看）
+        if: always()
+        run: |
+          cd out
+          git init -q -b cards
+          git -c user.name=bot -c user.email=bot@users.noreply.github.com add -A
+          git -c user.name=bot -c user.email=bot@users.noreply.github.com commit -qm "cards $(date +%F)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" cards

@@ -96,14 +96,19 @@ def fetch_institutional(day: dt.date, names_hint=None):
                    {"date": ymd, "selectType": "ALLBUT0999", "response": "json"})
     fields = js.get("fields", [])
 
-    def col(keyword, exclude=None):
-        for i, f in enumerate(fields):
-            if keyword in f and "買賣超" in f and (not exclude or exclude not in f):
-                return i
-        raise KeyError(keyword)
+    def col(*names):
+        for n in names:  # 先找完全相同的欄名，再找開頭相同的
+            if n in fields:
+                return fields.index(n)
+        for n in names:
+            for i, f in enumerate(fields):
+                if f.startswith(n):
+                    return i
+        raise KeyError(f"{names} 不在欄位中：{fields}")
 
-    idx = {"外資": col("外陸資", exclude="自營商)"), "投信": col("投信"),
-           "自營商": col("自營商買賣超股數") if any("自營商買賣超股數" == f for f in fields) else col("自營商")}
+    idx = {"外資": col("外陸資買賣超股數(不含外資自營商)", "外陸資買賣超股數"),
+           "投信": col("投信買賣超股數"),
+           "自營商": col("自營商買賣超股數")}
     top = {}
     for who, ci in idx.items():
         lst = [{"code": r[0].strip(), "name": r[1].strip(), "lots": (_num(r[ci]) or 0) / 1000}
