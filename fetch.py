@@ -39,6 +39,11 @@ def _num(s):
         return None
 
 
+def _is_etf(code):
+    """00 開頭為 ETF／ETN，排行榜排除。"""
+    return str(code).strip().startswith("00")
+
+
 def _roc_to_date(s):
     """'115/11/13' 或 '1151113' → date"""
     s = str(s).replace("/", "")
@@ -112,7 +117,7 @@ def fetch_institutional(day: dt.date, names_hint=None):
     top = {}
     for who, ci in idx.items():
         lst = [{"code": r[0].strip(), "name": r[1].strip(), "lots": (_num(r[ci]) or 0) / 1000}
-               for r in js.get("data", [])]
+               for r in js.get("data", []) if not _is_etf(r[0])]
         lst.sort(key=lambda x: x["lots"])
         top[who] = {"buy": lst[::-1][:3], "sell": lst[:3]}
     return {"totals_bn": totals, "top": top}
@@ -143,7 +148,7 @@ def fetch_margin(day: dt.date):
     for r in stock_tbl.get("data", []):
         # 代號, 名稱, 融資買進, 融資賣出, 現金償還, 前日餘額, 今日餘額 ...
         prev, today = _num(r[5]), _num(r[6])
-        if prev is not None and today is not None:
+        if prev is not None and today is not None and not _is_etf(r[0]):
             lst.append({"code": r[0].strip(), "name": r[1].strip(), "lots": today - prev})
     lst.sort(key=lambda x: x["lots"])
     out["margin_decrease_top"] = lst[:5]
