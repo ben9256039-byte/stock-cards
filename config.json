@@ -1,0 +1,40 @@
+{
+  "_說明": "觀察名單只要填代號與名稱；程式會自動判斷上市(.TW)或上櫃(.TWO)。",
+  "watchlist": [
+    {"code": "2330", "name": "台積電"},
+    {"code": "2308", "name": "台達電"},
+    {"code": "2383", "name": "台光電"},
+    {"code": "6510", "name": "精測"},
+    {"code": "3105", "name": "穩懋"},
+    {"code": "2395", "name": "研華"},
+    {"code": "6269", "name": "台郡"},
+    {"code": "6739", "name": "竹陞"},
+    {"code": "2049", "name": "上銀"},
+    {"code": "4576", "name": "大銀微"},
+    {"code": "1597", "name": "直得"},
+    {"code": "NVDA", "name": "輝達", "symbol": "NVDA"}
+  ],
+  "global": [
+    {"symbol": "^SOX", "name": "費城半導體"},
+    {"symbol": "^IXIC", "name": "那斯達克"},
+    {"symbol": "^GSPC", "name": "標普500"},
+    {"symbol": "^VIX", "name": "VIX 恐慌指數"},
+    {"symbol": "^TNX", "name": "美10年債殖利率", "scale": 1.0},
+    {"symbol": "TWD=X", "name": "美元/台幣"}
+  ],
+  "checklist_thresholds": {
+    "foreign_sell_warn_bn": 100,
+    "foreign_sell_alert_bn": 300,
+    "maint_warn": 160,
+    "maint_alert": 140,
+    "sox_drop_warn_pct": -1.5,
+    "sox_drop_alert_pct": -3.0,
+    "vix_warn": 20,
+    "vix_alert": 25,
+    "twd_weak_warn_pct": 0.5
+  },
+  "ai": {
+    "model": "claude-sonnet-5-5",
+    "use_web_search": true
+  }
+}

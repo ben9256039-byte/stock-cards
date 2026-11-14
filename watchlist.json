@@ -1,0 +1,75 @@
+[
+ {
+  "code": "2330",
+  "name": "台積電",
+  "industry": "半導體業",
+  "theme": "晶圓代工"
+ },
+ {
+  "code": "2308",
+  "name": "台達電",
+  "industry": "電子零組件業",
+  "theme": "電源・資料中心"
+ },
+ {
+  "code": "2383",
+  "name": "台光電",
+  "industry": "電子零組件業",
+  "theme": "CCL銅箔基板"
+ },
+ {
+  "code": "6510",
+  "name": "精測",
+  "industry": "半導體業",
+  "theme": "探針卡・測試介面"
+ },
+ {
+  "code": "3105",
+  "name": "穩懋",
+  "industry": "半導體業",
+  "theme": "砷化鎵・低軌衛星"
+ },
+ {
+  "code": "2395",
+  "name": "研華",
+  "industry": "電腦及週邊設備業",
+  "theme": "工業電腦・邊緣AI"
+ },
+ {
+  "code": "6269",
+  "name": "台郡",
+  "industry": "電子零組件業",
+  "theme": "軟板FPC"
+ },
+ {
+  "code": "6739",
+  "name": "竹陞",
+  "industry": "其他電子業",
+  "theme": "半導體自動化設備"
+ },
+ {
+  "code": "2049",
+  "name": "上銀",
+  "industry": "電機機械",
+  "theme": "滾珠螺桿・機器人"
+ },
+ {
+  "code": "4576",
+  "name": "大銀微系統",
+  "industry": "電機機械",
+  "theme": "直驅馬達・機器人"
+ },
+ {
+  "code": "1597",
+  "name": "直得",
+  "industry": "電機機械",
+  "theme": "線性滑軌・機器人"
+ },
+ {
+  "code": "NVDA",
+  "name": "輝達",
+  "industry": "半導體業",
+  "theme": "AI GPU",
+  "symbol": "NVDA"
+ }
+]
